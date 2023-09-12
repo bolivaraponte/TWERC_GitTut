@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitTut</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="turf-github-tutorial">TURF GitHub tutorial</h1>
+<p>This tutorial will teach you how to track your projects with Git and collaborate through GitHub for Windows, Mac and Linux.</p>
+<p>Before we can collaborate through GitHub, we need to learn how to run Git on our personal computers. Git is a “version control” tool that lets users collaborate on files while keeping the file history intact so that previous versions are never lost. This can be useful for non-collaborative projects as well when we need to keep track of our edits.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>
+<p>You will need to install Git:<br>
+Windows: <a href="https://gitforwindows.org/">https://gitforwindows.org/</a><br>
+MacOS: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+</li>
+<li>
+<p>For Windows users, you may also consider a Linux environment which can be installed on Windows 10 computers. To install Linux in Windows, follow the instructions provided <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">here</a>.</p>
+</li>
+<li>
+<p>Register an account on <a href="https://github.com/">GitHub</a>.</p>
+</li>
+</ul>
+<h2 id="installing-git">Installing Git</h2>
+<p>You may need to install Git. Begin by opening a command line through the Terminal (MacOS) or your Linux distribution (Windows).</p>
+<p>Check whether Git is installed with the command:<br>
+<code>git --version</code></p>
+<p><strong>In MacOS</strong> this will automatically prompt you to install Git if it is not available.<br>
+<strong>In Linux</strong> you may install git with the command: <code>sudo apt install git-all</code>. This command may vary depending on your Linux distribution. See <a href="https://git-scm.com/download/linux">this link</a> for detailed instructions on what command to use.</p>
+<h2 id="initializing-git">Initializing Git</h2>
+<p>First we will <strong>configure Git with our GitHub account details</strong>. GitHub is a hosting solution that allows us to easily share our Git repositories with other users.</p>
+<p>To set your account details in git:<br>
+<code>git config --global user.name "Your GitHub username"</code><br>
+<code>git config --global user.email "Your GitHub account email"</code></p>
+<p>Git can also operate independently of GitHub, or with other hosting options such as BitBucket or GitLab.</p>
+<p>We can also <strong>set our default command line text editor</strong> for Git. By default, Git will use the Vim editor on the command line. Command line text editors can be confusing for users who are not used to working in this environment. I recommend using nano for those that are new to the command line, but Vim provides a more robust experience for those that are open to learning a new tool.<br>
+<code>git config --global core.editor "nano -w"</code><br>
+<code>git config --global core.editor "vim"</code></p>
+<p>You can check your configuration with the command:<br>
+<code>git config --list</code></p>
+<h2 id="your-first-repository">Your first repository</h2>
+<p>A repository is where Git saves the old versions of our files. We make repositories inside of the directory that we are working in. <strong>Let’s start by making a new working directory</strong>. I will provide command line code for those that are new to working this way.</p>
+<p><code>mkdir GitTut</code><br>
+<code>cd GitTut</code></p>
+<p>With these commands, we have made a “GitTut” directory to work in, and then navigated into the directory with the “cd” command. Now that we are in our working directory, we <strong>create a Git repository with the command</strong>:</p>
+<p><code>git init</code></p>
+<p>To see our new repository in the directory, use the command:</p>
+<p><code>ls -a</code></p>
+<p>You will see an output like this:<br>
+<img src="https://lh3.googleusercontent.com/53AWkB9AAu6mjhANJxFOvEWwmK2C0C3PLohbr1oO-NroeuVO3aUpRHn-tiUE3XRuENYvZGLBXG_R" alt="enter image description here"><br>
+The “.git” directory indicates that a repository has been created for your working directory. All subdirectories within your working directory will also be backed up in this repository.</p>
+<p>We can also <strong>check the project status</strong> with the command:</p>
+<p><code>git status</code></p>
+<p>You will see this output:<br>
+<img src="https://lh3.googleusercontent.com/qJy3VX2_gcbe6LmCRUfQrUln4HqB3EeTiig0hh7hvVg-MXCwbBI6uWDIWfcfF1fVBy9-3BUToNqt" alt="enter image description here"><br>
+For now, this means all is good! We will be returning to this status screen often.</p>
+<h2 id="tracking-file-changes">Tracking file changes</h2>
+<p>Now we are on to the bread and butter of using Git. Make sure that you are still in your “GitTut” directory before proceeding. You can check your current directory with the command <code>pwd</code>.</p>
+<p><strong>Create a new text file</strong> in your working directory:</p>
+<p><code>touch abstract.txt</code></p>
+<p>This command creates a new text file “text.txt” that can be opened with the text editor of your choice, either at the command line or with a GUI based editor like Word.  Enter some text into the file, then exit nano with ctrl+x. Nano will automatically prompt you to save when exiting.</p>
+<p>Let’s again <strong>check the project status</strong>:<br>
+<code>git status</code></p>
+<p>We now see:<br>
+<img src="https://lh3.googleusercontent.com/BUplRELmLCzwiJb8Z2O0z8gdnk8n0OBR-wSiK42aCe2KgmgLPOAzW7pqZG5K-FbJFQivU27blEal" alt="enter image description here"></p>
+<p>We now have an untracked file, “text.txt”. This simply means this file is new to the directory and has not yet been added to the repository. We can <strong>track a new file</strong> with the command:<br>
+<code>git add abstract.txt</code></p>
+<p>Again, check the project status:<br>
+<img src="https://lh3.googleusercontent.com/hG_LikP-Vj2XaWSAQ9Vj8ERNl4VaqHQFv9UNSZ5Tz_6IufdXJM213Vpy1BgK6vwrFfPW8178irAh" alt="enter image description here"><br>
+The new file is now being tracked but has not yet been “committed”.</p>
+<p>Committing a change is like preserving a sample. Each “commit” is a preserved state of your project that can be recalled in the future. The commit command will preserve any changes that have been “added” to the staging area. Let’s try.</p>
+<p>We can <strong>commit our changes</strong> with the command:</p>
+<p><code>git commit -m "add a description here".</code></p>
+<p>The “descriptive message” should  be a short and clear statement about the changes that were made, so that it’s easy to identify what changes the commit is associated with later on.</p>
+<p>After you’ve run this command, check your git status again and your repository is now current with the status of your directory.</p>
+<p>To <strong>see a log of the commits we’ve made</strong>, we can use the command:</p>
+<p><code>git log</code></p>
+<p>The output of this command will show you who made the commit, when the commit was made, and the descriptive message you entered when you made the commit.</p>
+<p>Let’s edit the file again to see how Git tracks changes between versions. Open the text file and change the contents, then save the file and close it. To <strong>view the changes</strong> between the edits you’ve made and what was saved in your last commit, use the command:<br>
+<code>git diff</code></p>
+<p>Look at the output of this command and understand where it’s showing you what has been removed and what has been added.</p>
+<p>Let’s commit this change before moving on:<br>
+<code>git add abstract.txt</code><br>
+<code>git commit -m ""</code><br>
+<code>git status</code></p>
+<p>We can <strong>control what files in our directory are added to any given commit</strong> with selective use of the add function. Let’s make a new file to see how this happens:</p>
+<p><code>touch newabstract.txt</code></p>
+<p>Now edit the text in both the first and second text  files and save your changes.</p>
+<p>Add each file to the staging area and commit them individually. Once you’ve done this, check your git status to see that your working directory in synced with your most recent commit, and use git log to see all of the changes you’ve done so far.</p>
+<p>Your output should look something like this:<br>
+<img src="https://lh3.googleusercontent.com/YVOwJqnyLY5iNxQMu6VR-Atd23ofFCj0wlouToNXcyRTYtNGE65hQ_YYFMGcttgJw2M-A5DB2ZMG" alt="enter image description here"></p>
+<h2 id="comparing-commits-and-returning-old-commits">Comparing commits and returning old commits</h2>
+<p>Each commit in your git log has a unique commit ID. We can use these IDs to <strong>compare the changes that have been made between commits</strong>. Let’s try this now. Copy the commit number of your first commit and then use this command:</p>
+<p><code>git diff commit#</code></p>
+<p>You will get an extended log of what we saw previously with the diff command, showing all of the changes that have been made since the first commit.</p>
+<p>This output shows us the mistakes we have made in painful detail. How can we fix the problems that we’ve made for ourselves? We can r<strong>estore a desired version of a file</strong> with the checkout command.</p>
+<p><code>git checkout commit# abstract.txt</code></p>
+<p>Woohoo! Let’s commit this change so that the most recent commit contains both versions of the commit we desire.</p>
+<p>This is all we will cover on the core functionality of git today. There is a more comprehensive tutorial on Git that this was adapted from on the <a href="https://swcarpentry.github.io/git-novice/">Software Carpentry website.</a> I highly reccomend working through the rest of it on your own or with a partner!</p>
+<h2 id="collaborating-with-github">Collaborating with GitHub</h2>
+<p>Now we’re finally on to the part you came here to see. However, as you see there is little left to learn! GitHub is merely a service that allows us to easily share out git repos with our collaborators. We only need a few more commands to translate working with Git to working with GitHub.</p>
+<p>You should all have GitHub accounts. Go to the GitHub repository for today’s lesson:<br>
+<a href="https://github.com/tulaneURF/10_23_2019">https://github.com/tulaneURF/10_23_2019</a></p>
+<p><img src="https://lh3.googleusercontent.com/eXrquvG8G1CfAdKp7DQMFzu-x_qs-PN3H3WvdW6qJ4x4TQhjRDBZskTmJ9KhZbKN1IvuC-aT20FP" alt="enter image description here"><br>
+You want to <strong>clone this repository</strong> to your computer. To do this, copy the HTTPS address given on the webpage (or if you know it you can just type it in manually in the command line.</p>
+<p>On the command line, navigate to a location on your computer that you want to clone the repository to. To clone a repository:</p>
+<p><code>git clone https://github.com/tulaneURF/10_23_2019.git</code></p>
+<p>Now navigate into this new directory. Let’s use <code>ls -a</code> and <code>git status</code> to check that this directory has a git repository associated with it.</p>
+<p>How does this local repository communicate with GitHub? It uses a remote, which links it to the GitHub repo. We <strong>can see what remotes are associated with a repo</strong> with the command:</p>
+<p><code>git remote -v</code></p>
+<p>This shows us the name of the remote and where it is addressed to. Remotes tell git where to “push” and “pull” from.</p>
+<p>Now we all have the same directory. How do we share the changes that we make with each other? We will work with this repo the same as we would any other, we just have to add one extra step at the end.</p>
+<p><em>I will show you one example first before you try.</em></p>
+<p>Now that I have pushed my commit up to GitHub, you will need to pull my changes down so that you have the most recent commit. <strong>This completes the basic GitHub workflow:</strong></p>
+<ul>
+<li><code>git pull origin master</code> updates your repo to the most recent version.</li>
+<li>Edit the files you wish to change.</li>
+<li><code>git add editedfile.extension</code> stages the modified files to be committed.</li>
+<li><code>git commit -m "commit message"</code> creates a commit from the staged changes.</li>
+<li><code>git push origin master</code> pushes the commit to GitHub so that your collaborators can pull your edits.</li>
+</ul>
+<p>That’s probably all we’re getting through today! If we have time I can show you how conflicts between commits are resolved and how to initialize your own remotes. Thanks for coming!</p>
+</div>
+</body>
+
+</html>
