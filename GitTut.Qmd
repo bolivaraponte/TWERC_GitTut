@@ -1,7 +1,8 @@
 ---
 title: "Intro to Version Control, Part 1: Git"
-author: "Bolívar Aponte Rolón<br> Original author(s): William Wilber <br> and Steve Formel " 
-date: "Last edited: `r format(Sys.time(), '%B %d, %Y')`"
+author: "William Wilber <br> and Steve Formel <br> *Modified by*: Bolívar Aponte Rolón" 
+date: last-modified
+date-format: "[Last updated on] MMMM D, YYYY"
 format: 
   html:
     toc: true
@@ -92,7 +93,14 @@ Linux in Windows, follow the instructions provided
 
 First we will **configure Git with our GitHub account details**. GitHub
 is a hosting solution that allows us to easily share our Git
-repositories with other users.
+repositories with other users. In doing so it also serves a cloud
+storage for your repositories in case something happens to your local
+machine.
+
+::: callout-warning
+<font size="4"> Go back and open a GitHub account if you haven't done
+so. We will be using it in the next part of the tutorial and in Part 2.
+:::
 
 To set your account details in git:
 
@@ -101,7 +109,8 @@ To set your account details in git:
 `git config --global user.email "Your GitHub account email"`
 
 Git can also operate independently of GitHub, or with other hosting
-options such as BitBucket or GitLab.
+options such as [BitBucket](https://bitbucket.org/) or
+[GitLab](https://about.gitlab.com/).
 
 We can also **set our default command line text editor** for Git. By
 default, Git will use the Vim editor on the command line. Command line
@@ -115,6 +124,7 @@ are open to learning a new tool.
 `git config --global core.editor "vim"`
 
 You can check your configuration with the command:\
+
 `git config --list`
 
 ## Your first repository
@@ -135,23 +145,43 @@ command**:
 
 `git init`
 
-To see our new repository in the directory, use the command:
+Now let's create a test file.
+
+`touch test.md`
+
+The `touch` command creates the file. This command creates a new text
+file "test.md" that can be opened with the text editor of your choice,
+either at the command line or with a GUI based editor like Word or
+Notepad.
+
+Let's see our new repository in the directory, use the command:
 
 `ls -a`
 
 You will see an output like this:\
-![Contents of new repo](images/output1.PNG)\
 
-The ".git" directory indicates that a repository has been created for
+![Figure 1. Newly created file](images/output1.PNG)
+
+See the `test.md` file we just created.
+
+The `.git` directory indicates that a repository has been created for
 your working directory. All subdirectories within your working directory
-will also be backed up in this repository.
+will also be backed up in this repository as long as you the Git to
+track them.
 
 We can also **check the project status** with the command:
 
 `git status`
 
 You will see this output:\
-![Status of new repo](images/output2.PNG)\
+
+![Figure 2. Untracked "test" file.](images/output2.PNG)
+
+Some files are already tracked in the image presented, but look closely
+at the newly created file. It is marked as "untracked". This simply
+means this file is new to the directory and has not yet been added to
+the repository.
+
 For now, this means all is good! We will be returning to this status
 screen often.
 
@@ -161,37 +191,38 @@ Now we are on to the bread and butter of using Git. Make sure that you
 are still in your "GitTut" directory before proceeding. You can check
 your current directory with the command `pwd`.
 
-**Create a new text file** in your working directory:
+We already created a file called `test.md`. Now let's modify it with
+`nano`:
 
-`touch abstract.txt`
+`nano test.md`
 
-This command creates a new text file "text.txt" that can be opened with
-the text editor of your choice, either at the command line or with a GUI
-based editor like Word. Enter some text into the file, then exit nano
-with ctrl+x. Nano will automatically prompt you to save when exiting.
+Enter some text into the file, then exit `nano` with `Ctrl + x`. Nano
+will automatically prompt you to save when exiting.
 
 Let's again **check the project status**:
 
 `git status`
 
-We now see:\
-![enter image description
-here](https://lh3.googleusercontent.com/BUplRELmLCzwiJb8Z2O0z8gdnk8n0OBR-wSiK42aCe2KgmgLPOAzW7pqZG5K-FbJFQivU27blEal)
+We can **track a new file** with the command:
 
-We now have an untracked file, "text.txt". This simply means this file
-is new to the directory and has not yet been added to the repository. We
-can **track a new file** with the command:\
-`git add abstract.txt`
+`git add test.md`
 
-Again, check the project status:\
-![enter image description
-here](https://lh3.googleusercontent.com/hG_LikP-Vj2XaWSAQ9Vj8ERNl4VaqHQFv9UNSZ5Tz_6IufdXJM213Vpy1BgK6vwrFfPW8178irAh)\
+Again, check the project status:
+
+![Figure 3. Status of \"test\' file after staging.](images/output3.PNG)
+
 The new file is now being tracked but has not yet been "committed".
 
 Committing a change is like preserving a sample. Each "commit" is a
 preserved state of your project that can be recalled in the future. The
 commit command will preserve any changes that have been "added" to the
-staging area. Let's try.
+staging area.
+
+[![Figure 4. The lifecycle of the status of your
+files](images/lifecycle.png)](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+
+
+Let's try.
 
 We can **commit our changes** with the command:
 
@@ -307,6 +338,10 @@ associated with a repo** with the command:
 This shows us the name of the remote and where it is addressed to.
 Remotes tell git where to "push" and "pull" from.
 
+:::callout-note
+<font size="4"> Not every cloned repository will allow you to `push` and `pull`. The administrators of said repositories establish who contributes or not. Make sure you are authorized to collaborate with a project or repository by contacting the administrators of it.
+:::
+
 Now we all have the same directory. How do we share the changes that we
 make with each other? We will work with this repo the same as we would
 any other, we just have to add one extra step at the end.
@@ -330,3 +365,10 @@ the basic GitHub workflow:**
 That's probably all we're getting through today! If we have time I can
 show you how conflicts between commits are resolved and how to
 initialize your own remotes. Thanks for coming!
+
+
+## References
+
+*   [https://swcarpentry.github.io/git-novice/](https://swcarpentry.github.io/git-novice/)
+
+*   [https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
