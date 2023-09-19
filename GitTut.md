@@ -44,7 +44,7 @@ through GitHub.
 
 ## What is version control?
 
-We are familiar with this concept somae way or another. Some of us save
+We are familiar with this concept some way or another. Some of us save
 multiple version of our code or manuscripts, culminating in the infamous
 "manuscript_FINAL_FINAL_VERSION.docx" or similar. Others make copies of
 files in another directory "just in case". This is a rudimentary form of
@@ -74,28 +74,53 @@ collaboration, transparency and open research [see
 
 ## Installing Git
 
-Let's check if you have Git installed already (MacOS and Linux). Begin
-by opening a command line through the Terminal (MacOS) or your Linux
-distribution (Windows).
+Let's check if you have Git installed already. For MacOS and Linux,
+begin by opening a terminal (MacOS) or or console your Linux
+distribution.
+
+### Mac OS
 
 Check whether Git is installed with the command:
 
 `git --version`
 
--   **In MacOS** this will automatically prompt you to install Git if it
+-   **In MacOS** it should automatically prompt you to install Git if it
     is not available. See
     [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     for more details.
+-   
 
--   **In Linux** you may install git with the command:
+##### Install with Homebrew
+
+Using the [Homebrew](https://brew.sh/) package manager you can follow
+these commands to install Git:
+
+1.  Open your terminal and install Git using Homebrew:
+
+`brew install git`
+
+2.  Verify the installation was successful by typing `git --version`
+
+You should see the most recent version installed.
+
+### Linux (Debian/Ubuntu)
+
+1.  Open up the terminal (shell) and install git with the command:
 
 `sudo apt install git-all`
+
+2.  Verify the installation was successful by typing `git --version`
 
 This command may vary depending on your Linux distribution. See [this
 link](https://git-scm.com/download/linux) for detailed instructions on
 what command to use.
 
--   **Windows**: <https://gitforwindows.org/>
+### Windows
+
+1.  Download the [Windows installer](https://gitforwindows.org/)
+2.  Follow the prompts.
+3.  Open a Command Prompt (or Git Bash if during installation you
+    elected not to use Git from the Windows Command Prompt).
 
 ::: callout-note
 <font size="4">For Windows users, you may also consider a Linux
@@ -104,7 +129,7 @@ Linux in Windows, follow the instructions provided
 [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 :::
 
-## Initializing Git
+## Configuring Git
 
 First we will **configure Git with our GitHub account details**. GitHub
 is a hosting solution that allows us to easily share our Git
@@ -149,9 +174,9 @@ repositories inside of the directory that we are working in. **Let's
 start by making a new working directory**. I will provide command line
 code for those that are new to working this way.
 
-`mkdir GitTut`
+`mkdir twerc_git`
 
-`cd GitTut`
+`cd twerc_git`
 
 With these commands, we have made a "GitTut" directory to work in, and
 then navigated into the directory with the "cd" command. Now that we are
@@ -159,6 +184,12 @@ in our working directory, we **create a Git repository with the
 command**:
 
 `git init`
+
+::: callout-note
+<font size="4"> You should see text in parenthesis (e.g. "(Main)") at
+the end of the path to your working directory. If not, we have to
+configure "global' options for the repository. See below.
+:::
 
 Now let's create a test file.
 
@@ -180,9 +211,9 @@ You will see an output like this:\
 See the `test.md` file we just created.
 
 The `.git` directory indicates that a repository has been created for
-your working directory. All subdirectories within your working directory
-will also be backed up in this repository as long as you the Git to
-track them.
+your working directory. All sub-directories within your working
+directory will also be backed up in this repository as long as you the
+Git to track them.
 
 We can also **check the project status** with the command:
 
@@ -191,6 +222,11 @@ We can also **check the project status** with the command:
 You will see this output:\
 
 ![Figure 2. Untracked "test" file.](images/output2.PNG)
+
+In this example, `git status` prompted and error message after detection
+of a "dubious" ownership (Figure 2). Copy and paste into the command
+line the exception command offered by Git. After this, enter
+`git status` again.
 
 Some files are already tracked in the image presented, but look closely
 at the newly created file. It is marked as "untracked". This simply
@@ -203,10 +239,10 @@ screen often.
 ## Tracking file changes
 
 Now we are on to the bread and butter of using Git. Make sure that you
-are still in your "GitTut" directory before proceeding. You can check
+are still in your "twerc_git" directory before proceeding. You can check
 your current directory with the command `pwd`. This is important because
 ewe don't want to start a repository in the wrong directory or our
-computer's root directory
+computer's root directory.
 
 We already created a file called `test.md`. Now let's modify it with
 `nano`:
@@ -216,16 +252,22 @@ We already created a file called `test.md`. Now let's modify it with
 Enter some text into the file, then exit `nano` with `Ctrl + x`. Nano
 will automatically prompt you to save when exiting.
 
-Let's again **check the project status**:
-
-`git status`
-
 We can **track a new file** with the command:
 
 `git add test.md`
 
-Git does not track files unless you tell it. If you want all the files
-in a directory to be tracked, you can type:
+Let's again **check the project status**:
+
+`git status`
+
+Let's check the project status:
+
+![Figure 3. Status of "test' file after staging.](images/output3.PNG)
+
+::: callout-tip
+You can start tracking your file from the start or at any point in your
+project's history. Git does not track files unless you tell it. If you
+want all the files in a directory to be tracked, you can type:
 
 `git add .`
 
@@ -235,10 +277,9 @@ or
 
 This last command will track all files in the repository directory,
 including hidden files.
+:::
 
-Let's check the project status:
-
-![Figure 3. Status of "test' file after staging.](images/output3.PNG)
+##### Commiting changes
 
 When we used `git add test.md` started tracking the file. The new file
 is now being tracked but has not yet been "committed".
@@ -275,11 +316,11 @@ To **see a log of the commits we've made**, we can use the command:
 `git log`
 
 The output of this command will show you who made the commit, when the
-commit was made, and the descriptive message you entered when you made
-the commit. It contains the `checksum` associated with each commit. It
-is a unique identification number that Git creates when all changes have
-been successfully stored. This number will be different for each local
-machine.
+commit was made, the branch it occured in, and the descriptive message
+you entered when you made the commit. It contains the `checksum`
+associated with each commit. It is a unique identification number that
+Git creates when all changes have been successfully stored. This number
+will be different for each local machine.
 
 Let's edit the file again to see how Git tracks changes between
 versions. Open the text file and change the contents, then save the file
@@ -298,33 +339,37 @@ what has been removed and what has been added. The previous version
 file are indicated with a "+" and deletions with a "-" at the beginning
 of the line [@computing_for_biologists].
 
+![Figure 5. Output of \`git diff\`](images/output5.PNG)
+
 Let's commit this change before moving on:\
 
-`git add test,md`\
+`git add test.md`\
 
 `git commit -m "DESCRIPTIVE MESSAGE"`\
 
 `git status`
 
-### Practice
+#### Let's Practice
 
 We can **control what files in our directory are added to any given
 commit** with selective use of the add function. Let's make a new file
-to see how this happens:
+to see how this works:
 
 `touch new_test.md`
 
 Now edit the text in both the first and second text files and save your
 changes.
 
-Add each file to the staging area and commit them. Once you've done
-this, check your `git status` to see that your working directory is
-synced with your most recent commit, and use `git log` to see all of the
-changes you've done so far.
+Add each file to the staging area and commit them.
 
-Your output should look something like this:\
-![enter image description
-here](https://lh3.googleusercontent.com/YVOwJqnyLY5iNxQMu6VR-Atd23ofFCj0wlouToNXcyRTYtNGE65hQ_YYFMGcttgJw2M-A5DB2ZMG)
+`git add test.md new_test.md`
+
+Once you've done this, check your `git status` to see that your working
+directory is synced with your most recent commit, and use `git log` to
+see all of the changes you've done so far.
+
+Your output should look something like this:![Figure 6: Full commit
+list.](images/output6.PNG)
 
 ## Ammending an Incomplete Commit
 
@@ -357,26 +402,36 @@ both versions of the commit we desire.
 This is all we will cover on the core functionality of git today. There
 is a more comprehensive tutorial on Git that this was adapted from on
 the [Software Carpentry
-website.](https://swcarpentry.github.io/git-novice/) I highly reccomend
+website.](https://swcarpentry.github.io/git-novice/) I highly recommend
 working through the rest of it on your own or with a partner!
 
 ## Collaborating with GitHub
 
-Now we're finally on to the part you came here to see. However, as you
-see there is little left to learn! GitHub is merely a service that
-allows us to easily share out git repos with our collaborators. We only
-need a few more commands to translate working with Git to working with
-GitHub.
+Tracking changes in your local repository is a good practice, espcially
+so when you are collaborating with others. Projects with collaborators
+are important and nobody wants be the one who delete a file by mistake.
+For this purpose software developers and scientist use Github to share
+there code, collaborate and promote reproducibility. GitHub is merely a
+service that allows us to easily share out git repos with our
+collaborators. You can host fully remote repositories as well as connect
+your local repository with a remote. To achieve this we will learn a few
+more commands to translate working with Git to working with GitHub.
 
-You should all have GitHub accounts. Go to the GitHub repository for
-today's lesson:\
-<https://github.com/tulaneURF/10_23_2019>
+::: callout-tip
+\<font size-"4"\>You should all have GitHub accounts. If not, pause and
+create one.
+:::
+
+Go to the GitHub repository for today's lesson:\
+<https://github.com/TulaniansWERC/GitTut_Sep2023.git>
 
 ![enter image description
 here](https://lh3.googleusercontent.com/eXrquvG8G1CfAdKp7DQMFzu-x_qs-PN3H3WvdW6qJ4x4TQhjRDBZskTmJ9KhZbKN1IvuC-aT20FP)\
 You want to **clone this repository** to your computer. To do this, copy
 the HTTPS address given on the webpage (or if you know it you can just
 type it in manually in the command line.
+
+`git clone https://github.com/TulaniansWERC/GitTut_Sep2023.git`
 
 On the command line, navigate to a location on your computer that you
 want to clone the repository to. To clone a repository:

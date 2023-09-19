@@ -86,6 +86,7 @@ Check whether Git is installed with the command:
     is not available. See
     [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     for more details.
+-   
 
 ##### Install with Homebrew
 
