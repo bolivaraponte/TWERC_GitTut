@@ -37,23 +37,32 @@ editor:
 
 ## Objective
 
-This tutorial will teach you the basics of version control and track the history of your projects (i.e. R scripts) with Git in *Windows*, *Mac* and *Linux*. We will then learn how to share code and collaborate through GitHub.
+This tutorial will teach you the basics of version control and track the
+history of your projects (i.e. R scripts) with Git in *Windows*, *Mac*
+and *Linux*. We will then learn how to share code and collaborate
+through GitHub.
 
 ## What is version control?
 
-We are familiar with this concept somae way or another. Some of us save multiple version of our code or manuscripts, culminating in the infamous "manuscript_FINAL_FINAL_VERSION.docx" or similar. Other make make copies of files in another directory "just in case". This is a rudimentary form of version control that works, but we can agree it is cumbersome. 
+We are familiar with this concept somae way or another. Some of us save
+multiple version of our code or manuscripts, culminating in the infamous
+"manuscript_FINAL_FINAL_VERSION.docx" or similar. Others make copies of
+files in another directory "just in case". This is a rudimentary form of
+version control that works, but we can agree it is cumbersome.
 
-To overcome this challenges, programmers developed various form of version control, but all can be summarized as a "system that record changes to a file or set of files over time" allowing recall to specific version later on @progit2014.
+To overcome this challenges, programmers developed various form of
+version control, but all can be summarized as a "system that record
+changes to a file or set of files over time" allowing recall to specific
+version later on [@progit2014].
 
-Git is a version control tool that lets
-users track the history of the project so that
-previous versions are never lost. This is great for collaboration as well as
-non-collaborative projects when we need to keep track of our
-edits. 
-Recently, there is interest for Ecology and
-Evolutionary Biology (surely applicable to other fields as well) to use Git and
-GitHub (or similar) to improve research workflows, collaboration,
-transparency and open research. See @bragaNotJustProgrammers2023
+Git is a version control tool that lets users track the history of the
+project so that previous versions are never lost. This is great for
+collaboration as well as non-collaborative projects when we need to keep
+track of our edits. Recently, there is interest for Ecology and
+Evolutionary Biology (surely applicable to other fields as well) to use
+Git and GitHub (or similar) to improve research workflows,
+collaboration, transparency and open research [see
+@bragaNotJustProgrammers2023].
 
 ### Prerequisites
 
@@ -195,7 +204,9 @@ screen often.
 
 Now we are on to the bread and butter of using Git. Make sure that you
 are still in your "GitTut" directory before proceeding. You can check
-your current directory with the command `pwd`. This is important because ewe don't want to start a repository in the wrong directory or our computer's root directory
+your current directory with the command `pwd`. This is important because
+ewe don't want to start a repository in the wrong directory or our
+computer's root directory
 
 We already created a file called `test.md`. Now let's modify it with
 `nano`:
@@ -213,30 +224,32 @@ We can **track a new file** with the command:
 
 `git add test.md`
 
-Git does not track files unless you tell it. If you want all the files in a directory to be tracked, you can type:
+Git does not track files unless you tell it. If you want all the files
+in a directory to be tracked, you can type:
 
 `git add .`
 
-or 
+or
 
-`git add -all` 
+`git add -all`
 
-This last command will track all files in the repository directory, including hidden files.
+This last command will track all files in the repository directory,
+including hidden files.
 
 Let's check the project status:
 
-![Figure 3. Status of \"test\' file after staging.](images/output3.PNG)
+![Figure 3. Status of "test' file after staging.](images/output3.PNG)
 
-When we used `git add test.md` started tracking the file. The new file is now being tracked but has not yet been "committed".
+When we used `git add test.md` started tracking the file. The new file
+is now being tracked but has not yet been "committed".
 
-Committing a change creates a snapshot of your file at that time and stage. Each "commit" is a
-preserved state of your project that can be recalled in the future. The
-commit command will preserve any changes that have been "added" to the
-staging area.
+Committing a change creates a snapshot of your file at that time and
+stage. Each "commit" is a preserved state of your project that can be
+recalled in the future. The commit command will preserve any changes
+that have been "added" to the staging area.
 
 [![Figure 4. The lifecycle of the status of your
 files](images/lifecycle.png)](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
-
 
 Let's try.
 
@@ -244,9 +257,15 @@ We can **commit our changes** with the command:
 
 `git commit -m "ADD A DESCRIPTION HERE"`
 
-The "descriptive message" is created by the argument `-m`, short for "message". It should be a short and clear statement about
-the changes that were made, so that it's easy to identify the changes associated with the that particular commit later on. If you do not enter the `-m` argument Git will automatically open your default text editor so you can write a longer message detailing the changes in the commit. Spending a few extra seconds writing a good descriptive message will help you and others understand the history of the project. Think of it as good class notes!
-
+The "descriptive message" is created by the argument `-m`, short for
+"message". It should be a short and clear statement about the changes
+that were made, so that it's easy to identify the changes associated
+with the that particular commit later on. If you do not enter the `-m`
+argument Git will automatically open your default text editor so you can
+write a longer message detailing the changes in the commit. Spending a
+few extra seconds writing a good descriptive message will help you and
+others understand the history of the project. Think of it as good class
+notes!
 
 After you've run this command, check your `git status` again and your
 repository is now current with the status of your directory.
@@ -257,21 +276,27 @@ To **see a log of the commits we've made**, we can use the command:
 
 The output of this command will show you who made the commit, when the
 commit was made, and the descriptive message you entered when you made
-the commit. It contains the `checksum` associated with each commit. It is a unique identification number that Git creates when all changes have been successfully stored. This number will be different for each local machine. 
+the commit. It contains the `checksum` associated with each commit. It
+is a unique identification number that Git creates when all changes have
+been successfully stored. This number will be different for each local
+machine.
 
 Let's edit the file again to see how Git tracks changes between
 versions. Open the text file and change the contents, then save the file
-and close it. 
+and close it.
 
 ## Showing Changes In Repository
 
-To **view the changes** between the edits you've made and
-what was saved in your last commit, use the command:
+To **view the changes** between the edits you've made and what was saved
+in your last commit, use the command:
 
 `git diff`
 
 Look at the output of this command and understand where it's showing you
-what has been removed and what has been added. The previous version (marked a/test.md) and the current version (b/test.md). Additions to the file are indicated with a "+" and deletions with a "-" at the beginning of the line @computing_for_biologists. 
+what has been removed and what has been added. The previous version
+(marked a/test.md) and the current version (b/test.md). Additions to the
+file are indicated with a "+" and deletions with a "-" at the beginning
+of the line [@computing_for_biologists].
 
 Let's commit this change before moving on:\
 
@@ -292,10 +317,10 @@ to see how this happens:
 Now edit the text in both the first and second text files and save your
 changes.
 
-Add each file to the staging area and commit them. Once
-you've done this, check your `git status` to see that your working
-directory is synced with your most recent commit, and use `git log` to see
-all of the changes you've done so far.
+Add each file to the staging area and commit them. Once you've done
+this, check your `git status` to see that your working directory is
+synced with your most recent commit, and use `git log` to see all of the
+changes you've done so far.
 
 Your output should look something like this:\
 ![enter image description
@@ -303,8 +328,9 @@ here](https://lh3.googleusercontent.com/YVOwJqnyLY5iNxQMu6VR-Atd23ofFCj0wlouToNX
 
 ## Ammending an Incomplete Commit
 
-Sometime we forget to add a file to our commit command or we forgot to change that crucial line in our code. How do we fix that? We have two options: 1) ammend our commit, 2) "unstage" our file
-
+Sometime we forget to add a file to our commit command or we forgot to
+change that crucial line in our code. How do we fix that? We have two
+options: 1) ammend our commit, 2) "unstage" our file
 
 ## Comparing commits and returning to old commits
 
@@ -319,9 +345,9 @@ You will get an extended log of what we saw previously with the `diff`
 command, showing all of the changes that have been made since the first
 commit.
 
-This output shows us the changes we have made in painful detail. How
-can we fix the problems that we've made for ourselves? We can **restore
-a desired version of a file** with the checkout command.
+This output shows us the changes we have made in painful detail. How can
+we fix the problems that we've made for ourselves? We can **restore a
+desired version of a file** with the checkout command.
 
 `git checkout commit# abstract.txt`
 
@@ -369,8 +395,11 @@ associated with a repo** with the command:
 This shows us the name of the remote and where it is addressed to.
 Remotes tell git where to "push" and "pull" from.
 
-:::callout-note
-<font size="4"> Not every cloned repository will allow you to `push` and `pull`. The administrators of said repositories establish who contributes or not. Make sure you are authorized to collaborate with a project or repository by contacting the administrators of it.
+::: callout-note
+<font size="4"> Not every cloned repository will allow you to `push` and
+`pull`. The administrators of said repositories establish who
+contributes or not. Make sure you are authorized to collaborate with a
+project or repository by contacting the administrators of it.
 :::
 
 Now we all have the same directory. How do we share the changes that we
@@ -397,13 +426,11 @@ That's probably all we're getting through today! If we have time I can
 show you how conflicts between commits are resolved and how to
 initialize your own remotes. Thanks for coming!
 
-
 ## References
 
-:::{#refs}
+::: {#refs}
 :::
 
+-   <https://swcarpentry.github.io/git-novice/>
 
-*   [https://swcarpentry.github.io/git-novice/](https://swcarpentry.github.io/git-novice/)
-
-*   [https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+-   <https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository>
