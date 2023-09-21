@@ -1,6 +1,6 @@
 ---
 title: "Intro to Version Control, Part 1: Git"
-author: "William Wilber <br> and Steve Formel <br> *Modified by*: Bolívar Aponte Rolón" 
+author: " Bolívar Aponte Rolón <br> *created by*: William Wilber <br> and Steve Formel" 
 date: last-modified
 date-format: "[Last updated on] MMMM D, YYYY"
 bibliography: git_ref.bib
@@ -33,6 +33,10 @@ editor:
     wrap: 72
 ---
 
+
+::: {.cell}
+
+:::
 
 
 ## Objective
@@ -88,9 +92,9 @@ Check whether Git is installed with the command:
     is not available. See
     [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     for more details.
--   
+    
 
-##### Install with Homebrew
+#### Install with Homebrew
 
 Using the [Homebrew](https://brew.sh/) package manager you can follow
 these commands to install Git:
@@ -228,13 +232,10 @@ of a "dubious" ownership (Figure 2). Copy and paste into the command
 line the exception command offered by Git. After this, enter
 `git status` again.
 
-Some files are already tracked in the image presented, but look closely
-at the newly created file. It is marked as "untracked". This simply
-means this file is new to the directory and has not yet been added to
-the repository.
+The "test.md" is marked as "untracked". This simply
+means this file is new to the directory and has not yet been added to the repository.
 
-For now, this means all is good! We will be returning to this status
-screen often.
+For now, this means all is good! We will be returning to this status screen often.
 
 ## Tracking file changes
 
@@ -368,14 +369,38 @@ Once you've done this, check your `git status` to see that your working
 directory is synced with your most recent commit, and use `git log` to
 see all of the changes you've done so far.
 
-Your output should look something like this:![Figure 6: Full commit
-list.](images/output6.PNG)
+Your output should look something like this:
 
-## Ammending an Incomplete Commit
+![Figure 6. Full commit list.](images/output6.PNG)
 
-Sometime we forget to add a file to our commit command or we forgot to
+## Amending an Incomplete Commit
+
+Sometimes we forget to add a file to our commit command or we forgot to
 change that crucial line in our code. How do we fix that? We have two
 options: 1) ammend our commit, 2) "unstage" our file
+
+#### Amending our commit
+
+We can add the modified file or file that  we had forgotten by running:
+
+`git add forgottenfile.txt`
+
+`git add fixedcode.R`
+
+`git commit --amend`
+
+This will include your files in the previous commit. Of course, you can always just do a new commit with the files you missed but this creates many small commits that can be annoying. 
+
+#### Unstaging Files
+
+We can "unstage" file when we do no intend on including a certain files or commiting the changes made. Git provide helpful suggestions on how to do this. When working in a local repository we can check with `git status` and it will look like this:
+
+![Figure 7. Git suggestion on how to unstage files](images/output7.PNG)
+
+Run command:
+
+`git restore --staged <file>`
+
 
 ## Comparing commits and returning to old commits
 
@@ -392,22 +417,28 @@ commit.
 
 This output shows us the changes we have made in painful detail. How can
 we fix the problems that we've made for ourselves? We can **restore a
-desired version of a file** with the checkout command.
+desired version of a file** with the checkout command. 
 
-`git checkout commit# abstract.txt`
+To restore to the last commit, run:
+
+`git checkout test.md`
+
+If you need to restore to a specific commit version, run:
+
+`git checkout commit# test.md`
+
+**Remember that "commit#" just refers to the commit number given when you run `git log`.**
 
 Woohoo! Let's commit this change so that the most recent commit contains
 both versions of the commit we desire.
 
-This is all we will cover on the core functionality of git today. There
-is a more comprehensive tutorial on Git that this was adapted from on
-the [Software Carpentry
+This is all we will cover on the core functionality of Git today. For a more comprehensive tutorial exploring how to create and merge branches check out the [Software Carpentry
 website.](https://swcarpentry.github.io/git-novice/) I highly recommend
 working through the rest of it on your own or with a partner!
 
 ## Collaborating with GitHub
 
-Tracking changes in your local repository is a good practice, espcially
+Tracking changes in your local repository is a good practice, especially
 so when you are collaborating with others. Projects with collaborators
 are important and nobody wants be the one who delete a file by mistake.
 For this purpose software developers and scientist use Github to share
@@ -422,21 +453,19 @@ more commands to translate working with Git to working with GitHub.
 create one.
 :::
 
+When you have a collaborative project you will want to set up your repository online in GitHub. Collaborators will need to `clone` the repository to participate and contribute. Let's do that now! 
+
 Go to the GitHub repository for today's lesson:\
 <https://github.com/TulaniansWERC/GitTut_Sep2023.git>
 
-![enter image description
-here](https://lh3.googleusercontent.com/eXrquvG8G1CfAdKp7DQMFzu-x_qs-PN3H3WvdW6qJ4x4TQhjRDBZskTmJ9KhZbKN1IvuC-aT20FP)\
-You want to **clone this repository** to your computer. To do this, copy
-the HTTPS address given on the webpage (or if you know it you can just
+
+![TWERC Repo](images/twercrepo.PNG)
+
+You want to **clone this repository** to your computer. Navigate to the `twerc_git` directory we created before. Copy
+the HTTPS address given on the webpage or
 type it in manually in the command line.
 
 `git clone https://github.com/TulaniansWERC/GitTut_Sep2023.git`
-
-On the command line, navigate to a location on your computer that you
-want to clone the repository to. To clone a repository:
-
-`git clone https://github.com/tulaneURF/10_23_2019.git`
 
 Now navigate into this new directory. Let's use `ls -a` and `git status`
 to check that this directory has a git repository associated with it.
@@ -448,7 +477,7 @@ associated with a repo** with the command:
 `git remote -v`
 
 This shows us the name of the remote and where it is addressed to.
-Remotes tell git where to "push" and "pull" from.
+Remotes tell Git where to "push" and "pull" from.
 
 ::: callout-note
 <font size="4"> Not every cloned repository will allow you to `push` and
@@ -467,15 +496,42 @@ Now that I have pushed my commit up to GitHub, you will need to pull my
 changes down so that you have the most recent commit. **This completes
 the basic GitHub workflow:**
 
--   `git pull origin master` updates your repo to the most recent
-    version.
--   Edit the files you wish to change.
--   `git add editedfile.extension` stages the modified files to be
-    committed.
--   `git commit -m "commit message"` creates a commit from the staged
-    changes.
--   `git push origin master` pushes the commit to GitHub so that your
-    collaborators can pull your edits.
+
+::: {.cell}
+
+```{.bash .cell-code}
+# Updates your repo to the most recent version.
+$ `git pull origin master` 
+
+# Edit the files you wish to change; when done run:
+$  `git add editedfile.extension` 
+
+# or 
+
+$ git add --all
+
+# Commit
+$ `git commit -m "commit message"` 
+
+#Push (publish) your changes
+
+$ `git push origin master` 
+```
+:::
+
+::: callout-note
+<font size="4">Keep in mind that he "master" branch name can differ (e.g. main, default, etc.).
+:::
+
+
+## GitHut Desktop and Rproj
+
+We've learned a lot and if we were not comfortable working in a command line interface I hope this has helped. All that we did is also achieved through a graphical user interface (GUI). In this case GitHub Desktop. 
+
+Let's open our GitHub desktop application. 
+
+
+
 
 That's probably all we're getting through today! If we have time I can
 show you how conflicts between commits are resolved and how to
