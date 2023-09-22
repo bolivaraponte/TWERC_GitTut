@@ -92,7 +92,6 @@ Check whether Git is installed with the command:
     is not available. See
     [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
     for more details.
-    
 
 #### Install with Homebrew
 
@@ -232,10 +231,11 @@ of a "dubious" ownership (Figure 2). Copy and paste into the command
 line the exception command offered by Git. After this, enter
 `git status` again.
 
-The "test.md" is marked as "untracked". This simply
-means this file is new to the directory and has not yet been added to the repository.
+The "test.md" is marked as "untracked". This simply means this file is
+new to the directory and has not yet been added to the repository.
 
-For now, this means all is good! We will be returning to this status screen often.
+For now, this means all is good! We will be returning to this status
+screen often.
 
 ## Tracking file changes
 
@@ -381,7 +381,7 @@ options: 1) ammend our commit, 2) "unstage" our file
 
 #### Amending our commit
 
-We can add the modified file or file that  we had forgotten by running:
+We can add the modified file or file that we had forgotten by running:
 
 `git add forgottenfile.txt`
 
@@ -389,18 +389,22 @@ We can add the modified file or file that  we had forgotten by running:
 
 `git commit --amend`
 
-This will include your files in the previous commit. Of course, you can always just do a new commit with the files you missed but this creates many small commits that can be annoying. 
+This will include your files in the previous commit. Of course, you can
+always just do a new commit with the files you missed but this creates
+many small commits that can be annoying.
 
 #### Unstaging Files
 
-We can "unstage" file when we do no intend on including a certain files or commiting the changes made. Git provide helpful suggestions on how to do this. When working in a local repository we can check with `git status` and it will look like this:
+We can "unstage" file when we do no intend on including a certain files
+or commiting the changes made. Git provide helpful suggestions on how to
+do this. When working in a local repository we can check with
+`git status` and it will look like this:
 
 ![Figure 7. Git suggestion on how to unstage files](images/output7.PNG)
 
 Run command:
 
 `git restore --staged <file>`
-
 
 ## Comparing commits and returning to old commits
 
@@ -417,7 +421,7 @@ commit.
 
 This output shows us the changes we have made in painful detail. How can
 we fix the problems that we've made for ourselves? We can **restore a
-desired version of a file** with the checkout command. 
+desired version of a file** with the checkout command.
 
 To restore to the last commit, run:
 
@@ -427,12 +431,15 @@ If you need to restore to a specific commit version, run:
 
 `git checkout commit# test.md`
 
-**Remember that "commit#" just refers to the commit number given when you run `git log`.**
+**Remember that "commit#" just refers to the commit number given when
+you run `git log`.**
 
 Woohoo! Let's commit this change so that the most recent commit contains
 both versions of the commit we desire.
 
-This is all we will cover on the core functionality of Git today. For a more comprehensive tutorial exploring how to create and merge branches check out the [Software Carpentry
+This is all we will cover on the core functionality of Git today. For a
+more comprehensive tutorial exploring how to create and merge branches
+check out the [Software Carpentry
 website.](https://swcarpentry.github.io/git-novice/) I highly recommend
 working through the rest of it on your own or with a partner!
 
@@ -448,27 +455,30 @@ collaborators. You can host fully remote repositories as well as connect
 your local repository with a remote. To achieve this we will learn a few
 more commands to translate working with Git to working with GitHub.
 
-::: callout-tip 
+::: callout-tip
 <font size="4">You should all have GitHub accounts. If not, pause and
 create one.
 :::
 
-When you have a collaborative project you will want to set up your repository online in GitHub. Collaborators will need to `clone` the repository to participate and contribute. Let's do that now! 
+When you have a collaborative project you will want to set up your
+repository online in GitHub. Collaborators will need to `clone` the
+repository to participate and contribute. Let's do that now!
 
 Go to the GitHub repository for today's lesson:\
-<https://github.com/TulaniansWERC/GitTut_Sep2023.git>
+<https://github.com/TulaniansWERC/GitTut_2023.git>
 
+![Figure 8. TWERC Repo](images/twercrepo.PNG)
 
-![TWERC Repo](images/twercrepo.PNG)
+You want to **clone this repository** to your computer. Navigate to the
+`twerc_git` directory we created before or one above it (Wherever you
+feel like cloning a repository). Copy the HTTPS address given on the
+webpage or type it in manually in the command line.
 
-You want to **clone this repository** to your computer. Navigate to the `twerc_git` directory we created before. Copy
-the HTTPS address given on the webpage or
-type it in manually in the command line.
-
-`git clone https://github.com/TulaniansWERC/GitTut_Sep2023.git`
+`git clone https://github.com/TulaniansWERC/GitTut_2023.git`
 
 Now navigate into this new directory. Let's use `ls -a` and `git status`
-to check that this directory has a git repository associated with it.
+to check that this directory has a git repository associated with it. We
+should see a `.git` file.
 
 How does this local repository communicate with GitHub? It uses a
 remote, which links it to the GitHub repo. We **can see what remotes are
@@ -478,6 +488,14 @@ associated with a repo** with the command:
 
 This shows us the name of the remote and where it is addressed to.
 Remotes tell Git where to "push" and "pull" from.
+
+::: callout-warning
+<font size="4"> You might be prompted to add the cloned repository to
+your global configurations. Follow Git's prompt suggestions that should
+go somewhat like this:
+
+`git config --global --add safe.directory <PATH/TO/REPO>`
+:::
 
 ::: callout-note
 <font size="4"> Not every cloned repository will allow you to `push` and
@@ -521,22 +539,111 @@ $ `git push origin master`
 
 
 ::: callout-note
-<font size="4">Keep in mind that he "master" branch name can differ (e.g. main, default, etc.).
+<font size="4">Keep in mind that he "master" branch name can differ
+(e.g. main, default, etc.).
 :::
 
+## GitHub Desktop
 
-## GitHut Desktop and Rproj
+We've learned a lot and if we were not comfortable working in a command
+line interface I hope this has helped. All that we did is also achieved
+through a graphical user interface (GUI). In this case GitHub Desktop.
 
-We've learned a lot and if we were not comfortable working in a command line interface I hope this has helped. All that we did is also achieved through a graphical user interface (GUI). In this case GitHub Desktop. 
+Let's open our GitHub desktop application. We can add the cloned
+repository to the GUI and see all the changes and files like we normally
+interact with file explorer.
 
-Let's open our GitHub desktop application. 
+### Add the cloned repository.
+
+1.  Go to **File** tab.
+2.  Select **Add local repository**
+3.  Find the path to the repository.
+
+If we haven't made any changes the set up should look like this:
+
+![Figure 9. GitHub Desktop workspace](images/github1.PNG)
+
+The work space is divided in a left file panel where you can see the
+files in the repository and write a commit message. On the right hand
+panel you will see the contents of the file and change (addition or
+deletions) to it.
+
+### Clone a repository from GitHub Desktop
+
+1.  Go to **File** tab.
+2.  Select **Clone repository**
+3.  In the pop-up window, select the **URL** tab
+4.  Paste the **URL** for the repository you want under **Repository URL
+    or GitHub username and repository**
+5.  Under **Local Path**, select where you want to clone the repository
+    to.
+
+![Figure 10. GitHub Desktop Clone repo window](images/github2.PNG)
+
+### GitHub Desktop Workflow
+
+When you are working with a remote repository, whether through the CLI
+or the desktop application, you will follow same workflow presented in
+the previous section. Before starting any changes you "pull" (or
+"fetch") any new updates from your remote to your local repository. Make
+changes, commit and "push" your changes. Now you have a visual aid to
+understand the commands!
+
+![Figure 11. GitHub Desktop header](images/github3.PNG)
+
+#### Staging and commiting files
+
+By checking the file changes your are "staging" your file for the next
+commit. A modified file is indicated by the orange square in the far
+right side in the left file panel.
+
+You can select all the file you want to commit, write a message and
+click **Commit to main** (or any other branch name).
+
+Git hub Desktop will tell you that no uncommitted changes are detected
+in the repository and prompt you to "push" to origin.
+
+![Figure 12. Push to origin in GitHub Desktop](images/github3.PNG)
+
+If the remote is set up correctly (it should because we cloned it!) it
+will push our changes and our collaborator can see.
+
+### R Studio and Rproj
+
+We can continue to make changes and pull and push changes via the CLI or GitHub Desktop, but We can link our repository to R Studio via and R Project. This potentially minimizes windows and applications open and it can all be done from one integrated development environment (IDE). It's more user friendly! 
+
+Steps
+
+1.    Open **R Studio**
+2.    Create a **.Rproj** file by going to the upper right corner and selecting the R-in-blue-box icon.
+3.    From the drop down menu, select **New Project**
+
+![Figure 13. R Studio: Creating a new .Rproj ](images/rstudio1.PNG)
+
+4.    Because we are working with an existing repository, select **Existing Directory** from the *New Project Wizard* window. 
+
+5.    Similar to GitHub Desktop, browse and add the repository path.
+6.    Click **Create Project**
+
+Your work space will take a couple of seconds to load the new project. It should have the same name as your repository. You can always change it later, if you prefer! 
+
+Now your R Studio window should looks like this (notice circled in red):
+
+![Figure 14. New feature in R Studio window](images/rstudio4.PNG)
+
+These are some of the changes you will see when working in an `.Rproj`. You will have multiple ways of pulling, commiting and pushing your changes all while working from your R Studio. 
+
+![Figure 15. The options are endless](images/rstudio5.PNG)
 
 
+Once you have made all your changes, select **commit** from any of the tabs and you will see this window:
+
+![Figure 16. Another commit window](images/rstudio6.PNG)
 
 
-That's probably all we're getting through today! If we have time I can
-show you how conflicts between commits are resolved and how to
-initialize your own remotes. Thanks for coming!
+Folow the same workflow as explained before and you will be a version control master!
+
+That's probably all we're getting through today! If we have time I can show you how conflicts between commits are resolved and how to initialize your own remotes. Thanks for coming!
 
 ## References
 
