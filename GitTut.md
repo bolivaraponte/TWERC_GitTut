@@ -1,5 +1,5 @@
 ---
-title: "Intro to Version Control, Part 1: Git"
+title: "Intro to Version Control with Git"
 author: " Bolívar Aponte Rolón <br> *created by*: William Wilber <br> and Steve Formel" 
 date: last-modified
 date-format: "[Last updated on] MMMM D, YYYY"
